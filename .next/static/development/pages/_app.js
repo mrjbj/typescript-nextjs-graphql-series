@@ -49,7 +49,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var apolloClient = null; // Polyfill fetch() if running on the server (used by apollo-client)
 
 if (!_isBrowser__WEBPACK_IMPORTED_MODULE_5__["isBrowser"]) {
-  global.fetch = isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default.a;
+  global.fetch = isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_3___default.a; // attaching fetch to NodeJS.global 
 }
 
 // initialState is the cache and cache can store pretty much anything
@@ -175,12 +175,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
+ // isomorphic cookie parser used by App class 
 
 function parseCookies(req) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   return cookie__WEBPACK_IMPORTED_MODULE_1___default.a.parse(req ? req.headers.cookie || "" : document.cookie, options);
-}
+} // WithData is HOC wrapping App to provide global propTypes, displayName, getInitialProps
+
 
 /* harmony default export */ __webpack_exports__["default"] = (function (App) {
   var _class, _temp;
@@ -245,7 +246,7 @@ function parseCookies(req) {
                     apolloClient: apollo,
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 54
+                      lineNumber: 56
                     },
                     __self: this
                   })));
@@ -314,7 +315,7 @@ function parseCookies(req) {
           apolloClient: this.apolloClient,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 98
           },
           __self: this
         }));
@@ -45287,6 +45288,8 @@ function (_App) {
 
   _createClass(MyApp, [{
     key: "render",
+    // wrap the front-end component hierarchy with <ApolloProvider> to provide
+    // GraphQL resolvers and apollo cache to entire application.
     value: function render() {
       var _this$props = this.props,
           Component = _this$props.Component,
@@ -45295,20 +45298,20 @@ function (_App) {
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_0__["Container"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 10
+          lineNumber: 12
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["ApolloProvider"], {
         client: apolloClient,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 11
+          lineNumber: 13
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, _extends({}, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 12
+          lineNumber: 14
         },
         __self: this
       }))));

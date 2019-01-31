@@ -8,10 +8,12 @@ import initApollo from "./initApollo";
 import { isBrowser } from "./isBrowser";
 import { COOKIE_NAME } from "../constants/frontEndConstants";
 
+// isomorphic cookie parser used by App class 
 function parseCookies(req?: any, options = {}) {
     return cookie.parse(req ? req.headers.cookie || "" : document.cookie, options);
 }
 
+// WithData is HOC wrapping App to provide global propTypes, displayName, getInitialProps
 export default (App: any) => {
     return class WithData extends React.Component {
         static displayName = `WithData(${App.displayName})`;

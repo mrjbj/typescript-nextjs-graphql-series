@@ -12,7 +12,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 // Polyfill fetch() if running on the server (used by apollo-client)
 if (!isBrowser) {
-    (global as any).fetch = fetch;
+    (global as any).fetch = fetch;  // attaching fetch to NodeJS.global 
 }
 
 interface Options {
